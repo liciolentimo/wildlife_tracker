@@ -1,19 +1,19 @@
 public class Sighting {
     private String location;
-    private String ranger;
+    private String rangerName;
     private int id;
 
-    public Sighting(String location, String ranger) {
+    public Sighting(String location, String rangerName) {
         this.location = location;
-        this.ranger = ranger;
+        this.rangerName = rangerName;
     }
 
     public String getLocation() {
         return location;
     }
 
-    public String getRanger() {
-        return ranger;
+    public String getRangerName() {
+        return rangerName;
     }
 
     public int getId() {
