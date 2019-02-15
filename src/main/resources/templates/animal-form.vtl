@@ -1,0 +1,34 @@
+<h2>Add Animal</h2>
+<form action="/animals/new" method="post">
+<div class="field">
+<label for="name">Name of Animal: </label>
+<input type="text" name="name" placeholder="Animal Name">
+</div>
+
+<div class="field">
+<label for="species">Species: </label>
+<input type="text" name="species" placeholder="Species">
+</div>
+
+<input type="checkbox" name="endangered" value="yes">
+ <label for="species">Is the Species Endangered?</label>
+ <div class="form-group reveal-if-active">
+    <label for="health">Health</label>
+    <select class="form-control" name="health">
+      <option>$HEALTH_HEALTHY</option>
+      <option>$HEALTH_OK</option>
+      <option>$HEALTH_ILL</option>
+    </select>
+  </div>
+  <div class="form-group reveal-if-active">
+    <label for="age">Age</label>
+    <select class="form-control" name="age">
+      <option>$AGE_NEW</option>
+      <option>$AGE_YOUNG</option>
+      <option>$AGE_ADULT</option>
+    </select>
+  </div>
+
+  <button type="submit" class="positive ui button">Add Animal</button>
+
+</form>
