@@ -1,0 +1,26 @@
+<h2>$animal.getName()</h2>
+<h3>$animal.getSpecies()</h3>
+
+<h4>Endangered: $animal.isEndangered()</h4>
+#if($animal.isEndangered())
+<h4>Health: $animal.getHealth()</h4>
+<h4>Age: $animal.getAge()</h4>
+<form class = "ui form" action="/animals/endangered/$animal.getId()/delete" method="post">
+  <button type = "submit" class="btn btn-danger">Delete animal</button>
+</form>
+#else
+<form class = "ui form" action="/animals/$animal.getId()/delete" method="post">
+  <button type = "submit" class="btn btn-danger">Delete animal</button>
+</form>
+#end
+
+<h3>Sightings</h3>
+#if($animal.getSightings().size() > 0)
+<ul>
+#foreach($sighting in $animal.getSightings())
+  <li><a href="/sightings/$sighting.getId()">$sighting.getFormattedDate()</a></li>
+#end
+</ul>
+#else
+<h5>No sightings yet!</h5>
+#end
