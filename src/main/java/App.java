@@ -55,5 +55,12 @@ public class App {
             return null;
           });
 
+          get("/sightings/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            model.put("rangerName", request.session().attribute("rangerName"));
+            model.put("template", "templates/sighting-form.vtl");
+            return new ModelAndView(model, layout);
+          }, new VelocityTemplateEngine());
+
     }
 }

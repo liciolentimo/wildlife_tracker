@@ -5,7 +5,7 @@
     #if($endangered_animals.size() > 0)
       <ul>
         #foreach($endangered_animal in $endangered_animals)
-          <li><a href="/animals/endangered/$endangered_animal.getId()"> $endangered_animal.getName() Species: $endangered_animal.getSpecies()</a></li>
+          <li><a href="/animals/endangered/$endangered_animal.getId()"> $endangered_animal.getName() </a></li>
         #end
       </ul>
     #else
@@ -16,8 +16,8 @@
     <h3>Non-Endangered Animals</h3>
     #if($notendangered_animals.size() > 0)
       <ul>
-        #foreach($regular_animal in $regular_animals)
-          <li><a href="/animals/$notendangered_animal.getId()">$notendangered_animal.getName() Species: $notendangered_animal.getSpecies()</a></li>
+        #foreach($notendangered_animal in $notendangered_animals)
+          <li><a href="/animals/$notendangered_animal.getId()">$notendangered_animal.getName()</a></li>
         #end
       </ul>
     #else

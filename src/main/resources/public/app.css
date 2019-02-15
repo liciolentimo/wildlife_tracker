@@ -62,5 +62,9 @@ body{
     overflow: visible;
   }
 
+  #sightingform{
+      display: inline-block;
+  }
+
 
 
