@@ -9,6 +9,10 @@ h1{
     font-size: 15px;
     color: red;
 }
+body{
+    font-family: 'Dosis', sans-serif; 
+    text-align: center;
+}
 
 #showcase {
     margin: 0;
@@ -40,6 +44,23 @@ h1{
     color: #fff;
     display: inline-block;
 }
+
+#animalform{
+    display: inline-block;
+    
+}
+
+.reveal-if-active {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+  }
+  
+  input[type="checkbox"]:checked ~ .reveal-if-active {
+    opacity: 1;
+    max-height: 100px;
+    overflow: visible;
+  }
 
 
 
