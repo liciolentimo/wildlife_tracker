@@ -74,7 +74,7 @@ public class EndangeredAnimalTest {
 
   @Test
   public void delete_deletesEndangeredAnimal_true() {
-    EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("tiger", "young", "ill");
+    EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("eagle", "newborn", "healthy");
     testEndangeredAnimal.save();
     testEndangeredAnimal.delete();
     assertEquals(null, EndangeredAnimal.find(testEndangeredAnimal.getId()));
