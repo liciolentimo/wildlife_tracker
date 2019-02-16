@@ -169,7 +169,7 @@ public class App {
             res.status(404);
             VelocityTemplateEngine engine = new VelocityTemplateEngine();
             Map<String, Object> model = new HashMap<String, Object>();
-            model.put("message", "looks like that page doesn't exist!");
+            model.put("message", "It looks like that page doesn't exist!");
             model.put("template", "templates/notfound.vtl");
             String html = engine.render(new ModelAndView(model, layout));
             res.body(html);

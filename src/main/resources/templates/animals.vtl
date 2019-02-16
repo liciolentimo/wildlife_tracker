@@ -16,7 +16,7 @@
     <h3>Non-Endangered Animals</h3>
     #if($notendangered_animals.size() > 0)
       <ul>
-        #foreach($notendangered_animal in $notendangered_animals)
+        #foreach($notendangered_animal in $notendangeredanimalname_animals)
           <li><a href="/animals/$notendangered_animal.getId()">$notendangered_animal.getName()</a></li>
         #end
       </ul>
