@@ -62,5 +62,36 @@ public class App {
             return new ModelAndView(model, layout);
           }, new VelocityTemplateEngine());
 
+          post("/sightings/new", (request, response) -> {
+            String rangerName = request.session().attribute("rangerName");
+            String location = request.queryParams("location");
+            Sighting sighting = new Sighting(location, rangerName);
+            sighting.save();
+            String[] animalArray = request.queryParams("animalname").split(",");
+            Animal animal;
+            for(String animalName : animalArray){
+              animal = NotEndangered.findAnimalByName(animalName);
+              if(animal == null){
+                animal = EndangeredAnimal.findAnimalByName(animalName);
+              }
+              if(animal != null){
+                sighting.addAnimal(animal);
+              } else {
+                throw new NullPointerException("Sorry, Animal not found. Please add the animal to the database first.");
+              }
+            }
+            response.redirect("/sightings");
+            return null;
+          });
+
+          get("/sightings", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            model.put("rangerName", request.session().attribute("rangerName"));
+            model.put("sightings", Sighting.listByDate());
+            model.put("template", "templates/sightings.vtl");
+            return new ModelAndView(model, layout);
+          }, new VelocityTemplateEngine());
+      
+
     }
 }

@@ -1,3 +1,4 @@
+import java.sql.Timestamp;
 import java.util.List;
 import org.sql2o.*;
 
@@ -7,6 +8,7 @@ public abstract class Animal{
     public int id;
     public boolean endangered;
     public String species;
+    public Timestamp spotted;
 
     public String getName(){
         return name;
@@ -24,14 +26,18 @@ public abstract class Animal{
         return species;
     }
 
+    public Timestamp getSpotted(){
+      return spotted;
+    }
+
     @Override
     public boolean equals(Object otherAnimal){
       if (!(otherAnimal instanceof Animal)) {
         return false;
       } else {
         Animal newAnimal = (Animal) otherAnimal;
-        return this.id == newAnimal.id && this.name.equals(newAnimal.name) &&
-          this.species.equals(newAnimal.species);
+        return this.id == newAnimal.id && this.name.equals(newAnimal.name);
+        //   this.species.equals(newAnimal.species);
       }
     }
 

@@ -100,5 +100,12 @@ public class Sighting extends Animal implements AnimalInterface{
     }
   }
 
+  public static List<Sighting> listByDate() {
+    String sql = "SELECT * FROM sightings ORDER BY spotted DESC";
+    try(Connection con = DB.sql2o.open()) {
+      return con.createQuery(sql).executeAndFetch(Sighting.class);
+    }
+  }
+
 
 }
