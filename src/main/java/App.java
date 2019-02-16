@@ -109,6 +109,72 @@ public class App {
             return null;
           });
       
+          get("/animals/:id", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            NotEndangered animal = NotEndangered.find(Integer.parseInt(request.params("id")));
+            model.put("animal", animal);
+            model.put("rangerName", request.session().attribute("rangerName"));
+            model.put("template", "templates/animal.vtl");
+            return new ModelAndView(model, layout);
+          }, new VelocityTemplateEngine());
+
+          post("/animals/:id/delete", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            NotEndangered animal = NotEndangered.find(Integer.parseInt(request.params("id")));
+            animal.delete();
+            response.redirect("/animals");
+            return null;
+          });
+
+          get("/animals/endangered/:id", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            EndangeredAnimal animal = EndangeredAnimal.find(Integer.parseInt(request.params("id")));
+            model.put("animal", animal);
+            model.put("rangerName", request.session().attribute("rangerName"));
+            model.put("template", "templates/animal.vtl");
+            return new ModelAndView(model, layout);
+          }, new VelocityTemplateEngine());
+
+          post("/animals/endangered/:id/delete", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            EndangeredAnimal animal = EndangeredAnimal.find(Integer.parseInt(request.params("id")));
+            animal.delete();
+            response.redirect("/animals");
+            return null;
+          });
+
+          exception(NullPointerException.class, (exc, request, response) -> {
+            response.status(500);
+            VelocityTemplateEngine engine = new VelocityTemplateEngine();
+            Map<String, Object> model = new HashMap<String, Object>();
+            model.put("rangerName", request.session().attribute("rangerName"));
+            model.put("message", exc.getMessage());
+            model.put("template", "templates/notfound.vtl");
+            String html = engine.render(new ModelAndView(model, layout));
+            response.body(html);
+          });
+      
+          exception(IndexOutOfBoundsException.class, (exc, request, response) -> {
+            response.status(404);
+            VelocityTemplateEngine engine = new VelocityTemplateEngine();
+            Map<String, Object> model = new HashMap<String, Object>();
+            model.put("rangerName", request.session().attribute("rangerName"));
+            model.put("message", exc.getMessage());
+            model.put("template", "templates/notfound.vtl");
+            String html = engine.render(new ModelAndView(model, layout));
+            response.body(html);
+          });
+      
+          exception(NumberFormatException.class, (exc, req, res) -> {
+            res.status(404);
+            VelocityTemplateEngine engine = new VelocityTemplateEngine();
+            Map<String, Object> model = new HashMap<String, Object>();
+            model.put("message", "looks like that page doesn't exist!");
+            model.put("template", "templates/notfound.vtl");
+            String html = engine.render(new ModelAndView(model, layout));
+            res.body(html);
+          });
+      
       
 
     }
