@@ -29,4 +29,15 @@ public class NotEndangered extends Animal{
           return animal;
         }
       }
+
+      public static NotEndangered findAnimalByName(String name) {
+        try(Connection con = DB.sql2o.open()) {
+          String sql = "SELECT * FROM animals where name=:name";
+          NotEndangered animal = con.createQuery(sql)
+            .addParameter("name", name)
+            .throwOnMappingFailure(false)
+            .executeAndFetchFirst(NotEndangered.class);
+          return animal;
+        }
+      }
 }

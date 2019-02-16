@@ -67,6 +67,17 @@ public class EndangeredAnimal extends Animal implements AnimalInterface{
             .executeUpdate();
         }
       }
+
+      public static EndangeredAnimal findAnimalByName(String name) {
+        try(Connection con = DB.sql2o.open()) {
+          String sql = "SELECT * FROM animals where name=:name";
+          EndangeredAnimal animal = con.createQuery(sql)
+            .addParameter("name", name)
+            .throwOnMappingFailure(false)
+            .executeAndFetchFirst(EndangeredAnimal.class);
+          return animal;
+        }
+      }
     
    
 }
