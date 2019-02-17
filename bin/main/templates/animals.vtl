@@ -1,0 +1,27 @@
+<div class="row is-flex">
+  <div class="col-sm-6">
+    <h3>Endangered Animals</h3>
+  
+    #if($endangered_animals.size() > 0)
+      <ul>
+        #foreach($endangered_animal in $endangered_animals)
+          <li><a href="/animals/endangered/$endangered_animal.getId()"> $endangered_animal.getName() </a></li>
+        #end
+      </ul>
+    #else
+      <h5>No saved endangered animals</h5>
+    #end
+  </div>
+  <div class="col-sm-6">
+    <h3>Non-Endangered Animals</h3>
+    #if($notendangered_animals.size() > 0)
+      <ul>
+        #foreach($notendangered_animal in $notendangered_animals)
+          <li><a href="/animals/$notendangered_animal.getId()">$notendangered_animal.getName()</a></li>
+        #end
+      </ul>
+    #else
+      <h5>No saved animals</h5>
+    #end
+  </div>
+</div>

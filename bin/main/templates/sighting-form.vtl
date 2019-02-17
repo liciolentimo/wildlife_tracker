@@ -1,0 +1,21 @@
+<h3>Add Sighting</h3>
+<form action="/sightings/new" method="post" class="ui form" id="sightingform">
+  <div class="form-group">
+    <label for="location">Location</label>
+    <select class="ui selection dropdown" name="location">
+      <option>Zone A</option>
+      <option>Zone B</option>
+      <option>Zone C</option>
+      <option>Zone D</option>
+    </select>
+  </div>
+  <div class="field">
+    <label for="animalname">Animal Name: </label>
+    <input type="text" name="animalname" class="form-control" required>
+  </div>
+  <div class="field">
+    <label for="rangerName">Ranger Name: </label>
+    <input type="text" name="rangerName" class="form-control" required>
+  </div>
+  <button type="submit" name="button" class="btn btn-primary">Add Sighting</button>
+</form>

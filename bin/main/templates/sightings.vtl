@@ -1,0 +1,16 @@
+<h3>Sightings</h3>
+<div class="sightings">
+#if($sightings.size() > 0)
+    #foreach($sighting in $sightings)
+    <div class="sighting">
+      <p><a href="/sightings/$sighting.getId()">Date: $sighting.getFormattedDate()</a></p>
+      <p>Ranger: $sighting.getRangerName()</p>
+      <p>Location: $sighting.getLocation()</p>
+      <p>$sighting.getNotEndangeredAnimals().size() Non-Endangered animals</p>
+      <p>$sighting.getEndangeredAnimals().size() endangered animals</p>
+    </div>
+    #end
+#else
+  <h5>No sightings found</h5>
+#end
+</div>
