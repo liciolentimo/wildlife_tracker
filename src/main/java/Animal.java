@@ -4,7 +4,7 @@ import org.sql2o.*;
 
 public abstract class Animal{
     public String name;
-    public String age;
+   // public String age;
     public int id;
     public boolean endangered;
     public String species;
@@ -17,6 +17,10 @@ public abstract class Animal{
     public int getId(){
         return id;
     }
+
+    // public String getAge(){
+    //   return age;
+    // }
 
     public boolean isEndangered(){
         return endangered;

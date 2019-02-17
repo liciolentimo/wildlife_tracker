@@ -45,7 +45,7 @@ public class App {
             if(endangered){
               String health = request.queryParams("health");
               String age = request.queryParams("age");
-              EndangeredAnimal endangeredAnimal = new EndangeredAnimal(name, age, health);
+              EndangeredAnimal endangeredAnimal = new EndangeredAnimal(name, age, health,species);
               endangeredAnimal.save();
             } else{
               NotEndangered notEndangered = new NotEndangered(name, species);
