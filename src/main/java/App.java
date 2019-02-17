@@ -63,7 +63,7 @@ public class App {
           }, new VelocityTemplateEngine());
 
           post("/sightings/new", (request, response) -> {
-            String rangerName = request.session().attribute("rangerName");
+            String rangerName = request.queryParams("rangerName");
             String location = request.queryParams("location");
             Sighting sighting = new Sighting(location, rangerName);
             sighting.save();

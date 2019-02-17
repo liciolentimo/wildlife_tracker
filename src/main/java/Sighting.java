@@ -19,6 +19,10 @@ public class Sighting extends Animal implements AnimalInterface{
         return rangerName;
     }
 
+    public int getId(){
+      return id;
+    }
+
   
 
     public String getFormattedDate() {
