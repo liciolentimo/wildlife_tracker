@@ -142,6 +142,8 @@ COPY public.animals (id, name, age, health, endangered, species) FROM stdin;
 16	lion	newborn	healthy	t	cat
 17	elephant	\N	\N	f	mammal
 18	tiger	young	okay	t	cat
+19	simba	young	healthy	t	cat
+20	animal 1	newborn	healthy	t	mammal
 \.
 
 
@@ -151,6 +153,7 @@ COPY public.animals (id, name, age, health, endangered, species) FROM stdin;
 
 COPY public.animals_sightings (animal_id, sighting_id) FROM stdin;
 16	16
+19	17
 \.
 
 
@@ -160,6 +163,9 @@ COPY public.animals_sightings (animal_id, sighting_id) FROM stdin;
 
 COPY public.sightings (id, location, spotted, rangername) FROM stdin;
 16	Zone A	2019-02-17 10:03:00.104519	rang
+17	Zone C	2019-02-18 07:53:32.480021	ranger 2
+20	Zone A	2019-02-18 07:54:11.457795	ghj
+21	Zone A	2019-02-18 09:00:25.472221	ranger
 \.
 
 
@@ -167,14 +173,14 @@ COPY public.sightings (id, location, spotted, rangername) FROM stdin;
 -- Name: animals_id_seq; Type: SEQUENCE SET; Schema: public; Owner: licio
 --
 
-SELECT pg_catalog.setval('public.animals_id_seq', 18, true);
+SELECT pg_catalog.setval('public.animals_id_seq', 20, true);
 
 
 --
 -- Name: sightings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: licio
 --
 
-SELECT pg_catalog.setval('public.sightings_id_seq', 16, true);
+SELECT pg_catalog.setval('public.sightings_id_seq', 23, true);
 
 
 --
