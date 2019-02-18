@@ -28,6 +28,9 @@ I created a Pivotal Tracker board for this project. View it here:  https://www.p
 * `CREATE TABLE animals_sightings(animal_id int, sighting_id int);`
 * `CREATE DATABASE wildlife_tracker_test WITH TEMPLATE wildlife_tracker;`
 
+## Live site
+This project is hosted on Heroku: https://sleepy-dawn-50223.herokuapp.com/
+
 ## Author 
 
 [MIT](LICENSE) © Licio Lentimo
