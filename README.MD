@@ -4,6 +4,9 @@
 
 This is a web app that enables rangers to track wildlife in real time. The user first has to add an animal to the database.The animals are categorized as endangered and non-endangered. Once that is complete the user can now make a sighting and input the ranger name and location.
 
+## User Stories
+I created a Pivotal Tracker board for this project. View it here:  https://www.pivotaltracker.com/projects/2312197
+
 ## Prerequisites
 
 * Java `jdk`
