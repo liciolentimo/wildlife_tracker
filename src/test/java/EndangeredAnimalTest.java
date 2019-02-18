@@ -1,6 +1,7 @@
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.sql2o.*;
+import java.util.List;
 
 public class EndangeredAnimalTest {
 
@@ -73,11 +74,28 @@ public class EndangeredAnimalTest {
   }
 
   @Test
-  public void delete_deletesEndangeredAnimal_true() {
-    EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("lion", "newborn", "healthy","mammal");
+  public void delete_deletesEntryInDatabase_0(){
+    EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Bear", "young", "healthy","mammal");
     testEndangeredAnimal.save();
     testEndangeredAnimal.delete();
-    assertEquals(null, EndangeredAnimal.find(testEndangeredAnimal.getId()));
+    assertEquals(0, EndangeredAnimal.all().size());
+  }
+
+  @Test
+  public void getSightings_returnsAllSightings_int(){
+    EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Bear", "young", "healthy","mammal");
+    testEndangeredAnimal.save();
+    Sighting testSighting = new Sighting("Zone A", "Dave");
+    testSighting.save();
+    testSighting.addAnimal(testEndangeredAnimal);
+    List savedSightings = testEndangeredAnimal.getSightings();
+    assertEquals(1, savedSightings.size());
+    assertTrue(savedSightings.contains(testSighting));
+  }
+
+  @Test(expected=IndexOutOfBoundsException.class)
+  public void find_throwsExceptionIfAnimalNotFound() {
+    EndangeredAnimal.find(1);
   }
 
 }

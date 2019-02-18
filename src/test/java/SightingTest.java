@@ -1,6 +1,7 @@
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.sql2o.*;
+import java.util.List;
 
 public  class SightingTest{
 
@@ -68,13 +69,67 @@ public  class SightingTest{
     assertEquals(Sighting.find(secondSighting.getId()), secondSighting);
   }
 
-  @Test
-  public void delete_deletesSighting_true() {
+  // @Test
+  public void delete_deletesEntryInDatabase_0(){
     Sighting testSighting = new Sighting("Zone A","Ben");
     testSighting.save();
     testSighting.delete();
-    assertEquals(null, Sighting.find(testSighting.getId()));
+    assertEquals(0, Sighting.all().size());
   }
 
+  @Test
+  public void addAnimal_addsNotEndangeredAnimalToSighting(){
+    Sighting testSighting = new Sighting("Zone A","Ben");
+    testSighting.save();
+    NotEndangered testNotEndangeredAnimal = new NotEndangered("Bear","mammal");
+    testNotEndangeredAnimal.save();
+    testSighting.addAnimal(testNotEndangeredAnimal);
+    NotEndangered  savedNotEndangeredAnimal = testSighting.getNotEndangeredAnimals().get(0);
+    assertTrue(testNotEndangeredAnimal.equals(savedNotEndangeredAnimal));
+  }
+
+  @Test
+  public void getNotEndangeredAnimals_returnsAllNotEndangeredAnimals_int(){
+    Sighting testSighting = new Sighting("Zone A","Ben");
+    testSighting.save();
+    NotEndangered testNotEndangeredAnimal = new NotEndangered("Bear","mammal");
+    testNotEndangeredAnimal.save();
+    testSighting.addAnimal(testNotEndangeredAnimal);
+    List savedAnimals = testSighting.getNotEndangeredAnimals();
+    assertEquals(1, savedAnimals.size());
+    assertTrue(savedAnimals.contains(testNotEndangeredAnimal));
+  }
+
+  @Test
+  public void addAnimal_addsEndangeredAnimalToSighting(){
+    Sighting testSighting = new Sighting("Zone A","Ben");
+    testSighting.save();
+    EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Bear", "young", "healthy","mammal");
+    testEndangeredAnimal.save();
+    testSighting.addAnimal(testEndangeredAnimal);
+    EndangeredAnimal  savedEndangeredAnimal = testSighting.getEndangeredAnimals().get(0);
+    assertTrue(testEndangeredAnimal.equals(savedEndangeredAnimal));
+  }
+
+  @Test
+  public void getEndangeredAnimals_returnsAllEndangeredAnimals_int(){
+    Sighting testSighting = new Sighting("Zone A","Ben");
+    testSighting.save();
+    EndangeredAnimal testEndangeredAnimal = new EndangeredAnimal("Bear", "young", "healthy","mammal");
+    testEndangeredAnimal.save();
+    testSighting.addAnimal(testEndangeredAnimal);
+    List savedAnimals = testSighting.getEndangeredAnimals();
+    assertEquals(1, savedAnimals.size());
+    assertTrue(savedAnimals.contains(testEndangeredAnimal));
+  }
+
+  @Test
+  public void listByDate_sortsSightingsListByMostRecent_Sighting(){
+    Sighting firstSighting = new Sighting("Zone A","Ben");
+    firstSighting.save();
+    Sighting secondSighting = new Sighting("Zone B", "Joe");
+    secondSighting.save();
+    assertEquals(secondSighting, Sighting.listByDate().get(0));
+  }
 
 }
